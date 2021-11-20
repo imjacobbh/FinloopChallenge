@@ -2,6 +2,7 @@ package com.jacob.finloopchallenge.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,14 +19,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val usersList= mutableListOf<User>()
     private lateinit var adapter: UserAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        initRecyclerView()
         getUsersFromServer()
     }
 
@@ -34,26 +32,29 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    private fun getUsersFromServer(){
+
+    private fun getUsersFromServer() {
         CoroutineScope(Dispatchers.IO).launch {
             val call = getRetrofit().create(APIService::class.java).getUsersList("users")
             val users = call.body()
             runOnUiThread {
-                if(call.isSuccessful){
+                if (call.isSuccessful) {
+                    val usersList = mutableListOf<User>()
                     usersList.clear()
                     users?.toCollection(usersList)
-                    adapter.notifyDataSetChanged()
-                }
-                else{
-                   showError()
+                    initRecyclerView(usersList)
+                } else {
+                    showError()
                 }
             }
         }
     }
-    private fun showError(){
-        Toast.makeText(this,"Ha ocurrido un error", Toast.LENGTH_LONG).show()
+
+    private fun showError() {
+        Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_LONG).show()
     }
-    private fun initRecyclerView(){
+
+    private fun initRecyclerView(usersList: List<User>) {
         adapter = UserAdapter(usersList)
         binding.recyclerVList.layoutManager = LinearLayoutManager(this)
         binding.recyclerVList.adapter = adapter

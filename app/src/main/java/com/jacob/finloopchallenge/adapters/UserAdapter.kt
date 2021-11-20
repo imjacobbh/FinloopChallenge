@@ -12,7 +12,11 @@ import com.jacob.finloopchallenge.data.User
 import com.jacob.finloopchallenge.databinding.ItemUserBinding
 
 class UserAdapter(private val usersList: List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
-
+    init {
+        setHasStableIds(true);
+    }
+    override fun getItemViewType(position: Int): Int =  position
+    override fun getItemId(position: Int): Long {return position.toLong()}
     private lateinit var binding: ItemUserBinding
     inner class UserViewHolder(view : View) : RecyclerView.ViewHolder(view){
 
@@ -34,7 +38,9 @@ class UserAdapter(private val usersList: List<User>) : RecyclerView.Adapter<User
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        //holder.setIsRecyclable(false)
         holder.setData(usersList[position])
+
     }
 
     override fun getItemCount(): Int = usersList.size

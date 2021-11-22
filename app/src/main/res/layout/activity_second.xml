@@ -51,13 +51,13 @@
         tools:text="Job title" />
 
     <CheckBox
+        android:button="@drawable/selector_favlist_item"
+        app:useMaterialThemeColors="false"
         app:layout_constraintVertical_bias="0.3"
         app:layout_constraintHorizontal_bias="0.3"
         android:id="@+id/cbFavoriteUser"
-        android:textSize="19dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Favorite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

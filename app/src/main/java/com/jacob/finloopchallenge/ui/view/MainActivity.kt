@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar!!.title = "Users"
         binding.swipe.setOnRefreshListener {
-            usersViewModel.onCreate()
+            usersViewModel.onRefresh()
         }
     }
 

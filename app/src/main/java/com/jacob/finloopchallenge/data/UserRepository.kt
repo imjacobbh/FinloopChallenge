@@ -21,7 +21,19 @@ class UserRepository @Inject constructor(
             DbMapper().convertUserListToDomain(userDao.getAll())
         }
     }
-
+    //usado para refrescar datos
+    suspend fun getUpdateListUsers():List<UserModel>{
+        val response = api.getUsersFromServer()
+        if(!response.isNullOrEmpty()){
+            userDao.delete()
+            userDao.insert(DbMapper().convertUserListToEntity(response))
+            userDetailDao.delete()
+            return response
+        }
+        return if(userDao.getAll().isEmpty())
+            response
+        else DbMapper().convertUserListToDomain(userDao.getAll())
+    }
     suspend fun getUserDetail(id: Int): List<UserDetailsModel> {
         val userDList: MutableList<UserDetailsModel> = mutableListOf<UserDetailsModel>()
         val response =userDetailDao.getUserbyId(id) //DbMapper().convertUserDetailItemToDomain(userDetailDao.getUserbyId(id))

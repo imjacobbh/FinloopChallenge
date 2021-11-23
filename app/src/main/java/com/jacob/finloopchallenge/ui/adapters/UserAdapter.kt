@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jacob.finloopchallenge.AppConstants.USER_ID_SELECTED
 import com.jacob.finloopchallenge.AppConstants.USER_NAME
 import com.jacob.finloopchallenge.FinloopChallengeApplication.Companion.prefs
+import com.jacob.finloopchallenge.data.Prefs
 import com.jacob.finloopchallenge.ui.view.SecondActivity
 import com.jacob.finloopchallenge.databinding.ItemUserBinding
 import com.jacob.finloopchallenge.domain.model.UserModel
+import javax.inject.Inject
 
-class UserAdapter( var usersList: List<UserModel>, val activityLauncher : ActivityResultLauncher<Intent>) :
+class UserAdapter (var usersList: List<UserModel>, private val activityLauncher : ActivityResultLauncher<Intent>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
 
     override fun getItemViewType(position: Int): Int = position
     override fun getItemId(position: Int): Long {

@@ -1,4 +1,4 @@
-package com.jacob.finloopchallenge.domain
+package com.jacob.finloopchallenge.domain.commands
 
 import com.jacob.finloopchallenge.data.UserRepository
 import com.jacob.finloopchallenge.domain.model.UserDetailsModel

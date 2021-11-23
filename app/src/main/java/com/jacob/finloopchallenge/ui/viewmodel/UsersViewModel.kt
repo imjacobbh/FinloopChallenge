@@ -3,11 +3,9 @@ package com.jacob.finloopchallenge.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jacob.finloopchallenge.data.network.UsersService
-import com.jacob.finloopchallenge.domain.GetUserDetailUseCase
-import com.jacob.finloopchallenge.domain.GetUserListUpdate
+import com.jacob.finloopchallenge.domain.commands.GetUserListUpdate
 import com.jacob.finloopchallenge.domain.model.UserModel
-import com.jacob.finloopchallenge.domain.GetUserListUseCase
+import com.jacob.finloopchallenge.domain.commands.GetUserListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,5 +1,6 @@
 package com.jacob.finloopchallenge.data
 
+import android.content.SharedPreferences
 import com.jacob.finloopchallenge.data.db.*
 import com.jacob.finloopchallenge.data.network.UsersService
 import com.jacob.finloopchallenge.domain.model.UserDetailsModel
@@ -9,7 +10,7 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val api: UsersService,
     private val userDao: UserDao,
-    private val userDetailDao: UserDetailDao
+    private val userDetailDao: UserDetailDao,
 ) {
 
     suspend fun getAllUsers(): List<UserModel> {

@@ -2,7 +2,7 @@ package com.jacob.finloopchallenge.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jacob.finloopchallenge.domain.GetUserDetailUseCase
+import com.jacob.finloopchallenge.domain.commands.GetUserDetailUseCase
 import androidx.lifecycle.viewModelScope
 import com.jacob.finloopchallenge.domain.model.UserDetailsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
-    private val getUserDetailUseCase:GetUserDetailUseCase
+    private val getUserDetailUseCase: GetUserDetailUseCase
 ):ViewModel() {
     val userDetailModel = MutableLiveData<List<UserDetailsModel>>()
     var isLoading = MutableLiveData<Boolean>()

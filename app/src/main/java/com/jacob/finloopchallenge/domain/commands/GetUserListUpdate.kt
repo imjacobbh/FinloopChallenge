@@ -1,11 +1,11 @@
-package com.jacob.finloopchallenge.domain
+package com.jacob.finloopchallenge.domain.commands
 
 import com.jacob.finloopchallenge.data.UserRepository
 import com.jacob.finloopchallenge.domain.model.UserModel
 import javax.inject.Inject
 
-class GetUserListUseCase @Inject constructor( private val repository: UserRepository) {
+class GetUserListUpdate @Inject constructor(private val repository: UserRepository) {
     suspend operator fun invoke():List<UserModel>?{
-        return repository.getAllUsers()
+        return repository.getUpdateListUsers()
     }
 }

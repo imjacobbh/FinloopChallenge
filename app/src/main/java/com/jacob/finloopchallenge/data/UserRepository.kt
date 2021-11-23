@@ -1,6 +1,5 @@
 package com.jacob.finloopchallenge.data
 
-import android.util.Log
 import com.jacob.finloopchallenge.data.db.*
 import com.jacob.finloopchallenge.data.network.UsersService
 import com.jacob.finloopchallenge.domain.model.UserDetailsModel
@@ -14,7 +13,7 @@ class UserRepository @Inject constructor(
 ) {
 
     suspend fun getAllUsers(): List<UserModel> {
-        return if (userDao.getAll().isEmpty()) {
+        return if (userDao.getAll().isEmpty()) {//aqui falto añadir condicion de refresco
             val response = api.getUsersFromServer()
             userDao.insert(DbMapper().convertUserListToEntity(response))
             response
@@ -26,7 +25,7 @@ class UserRepository @Inject constructor(
     suspend fun getUserDetail(id: Int): List<UserDetailsModel> {
         val userDList: MutableList<UserDetailsModel> = mutableListOf<UserDetailsModel>()
         val response =userDetailDao.getUserbyId(id) //DbMapper().convertUserDetailItemToDomain(userDetailDao.getUserbyId(id))
-        if(response?.userId !=null){
+        if(response?.userId !=null){//aqui falto añadir condicion de refresco
             userDList.add(DbMapper().convertUserDetailItemToDomain(response))
             return userDList
         }else{

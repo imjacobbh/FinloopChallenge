@@ -5,7 +5,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.jacob.finloopchallenge.data.Prefs
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class FinloopChallengeApplication : Application() {
     companion object {
         lateinit var prefs: Prefs

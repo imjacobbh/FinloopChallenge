@@ -1,0 +1,37 @@
+package com.jacob.finloopchallenge.ui.viewmodel
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.jacob.finloopchallenge.domain.GetUserDetailUseCase
+import androidx.lifecycle.viewModelScope
+import com.jacob.finloopchallenge.domain.model.UserDetailsModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class UserDetailViewModel @Inject constructor(
+    private val getUserDetailUseCase:GetUserDetailUseCase
+):ViewModel() {
+    val userDetailModel = MutableLiveData<List<UserDetailsModel>>()
+    var isLoading = MutableLiveData<Boolean>()
+
+    fun onCreate(id: Int) {
+
+        viewModelScope.launch {
+            isLoading.postValue(true)
+            val result = getUserDetailUseCase(id)
+            if (!result.isNullOrEmpty()) {
+                userDetailModel.postValue(result!!)
+                isLoading.postValue(false)
+            } else {
+                userDetailModel.postValue(emptyList())
+                isLoading.postValue(false)
+            }
+        }
+    }
+
+    fun getUserListModelObserver(): MutableLiveData<List<UserDetailsModel>> {
+        return userDetailModel
+    }
+}

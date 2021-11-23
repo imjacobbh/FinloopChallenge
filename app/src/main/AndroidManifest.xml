@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinloopChallenge">
         <activity
-            android:name=".activities.SecondActivity"
+            android:name="com.jacob.finloopchallenge.ui.view.SecondActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.jacob.finloopchallenge.ui.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,7 +14,7 @@ class UserRepository @Inject constructor(
 ) {
 
     suspend fun getAllUsers(): List<UserModel> {
-        return if (userDao.getAll().isEmpty()) {//aqui falto añadir condicion de refresco
+        return if (userDao.getAll().isEmpty()) {
             val response = api.getUsersFromServer()
             userDao.insert(DbMapper().convertUserListToEntity(response))
             response
@@ -22,33 +22,34 @@ class UserRepository @Inject constructor(
             DbMapper().convertUserListToDomain(userDao.getAll())
         }
     }
-    //usado para refrescar datos
-    suspend fun getUpdateListUsers():List<UserModel>{
+
+    suspend fun getUpdateListUsers(): List<UserModel> {
         val response = api.getUsersFromServer()
-        if(!response.isNullOrEmpty()){
+        if (!response.isNullOrEmpty()) {
             userDao.delete()
             userDao.insert(DbMapper().convertUserListToEntity(response))
             userDetailDao.delete()
             return response
         }
-        return if(userDao.getAll().isEmpty())
+        return if (userDao.getAll().isEmpty())
             response
         else DbMapper().convertUserListToDomain(userDao.getAll())
     }
+
     suspend fun getUserDetail(id: Int): List<UserDetailsModel> {
         val userDList: MutableList<UserDetailsModel> = mutableListOf<UserDetailsModel>()
-        val response =userDetailDao.getUserbyId(id) //DbMapper().convertUserDetailItemToDomain(userDetailDao.getUserbyId(id))
-        if(response?.userId !=null){//aqui falto añadir condicion de refresco
+        val response = userDetailDao.getUserbyId(id)
+        if (response?.userId != null) {
             userDList.add(DbMapper().convertUserDetailItemToDomain(response))
             return userDList
-        }else{
+        } else {
             val requestRes = api.getUserDetailsFromServer(id)
-            if(!requestRes.isNullOrEmpty()){
+            if (!requestRes.isNullOrEmpty()) {
                 userDList.add(api.getUserDetailsFromServer(id)[0])
                 userDetailDao.insert(DbMapper().converUserDetailListModelToEntity(userDList))
                 return userDList
             }
-            return  requestRes
+            return requestRes
         }
     }
 }

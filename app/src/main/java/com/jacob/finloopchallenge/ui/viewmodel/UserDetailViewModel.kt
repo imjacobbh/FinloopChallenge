@@ -17,12 +17,11 @@ class UserDetailViewModel @Inject constructor(
     var isLoading = MutableLiveData<Boolean>()
 
     fun onCreate(id: Int) {
-
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getUserDetailUseCase(id)
             if (!result.isNullOrEmpty()) {
-                userDetailModel.postValue(result!!)
+                userDetailModel.postValue(result)
                 isLoading.postValue(false)
             } else {
                 userDetailModel.postValue(emptyList())

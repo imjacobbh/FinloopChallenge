@@ -1,7 +1,5 @@
 package com.jacob.finloopchallenge.ui.view
 
-import android.annotation.SuppressLint
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val usersViewModel: UsersViewModel by viewModels()
 
-    @SuppressLint("NotifyDataSetChanged")
+
     private val secondLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_CODE) {

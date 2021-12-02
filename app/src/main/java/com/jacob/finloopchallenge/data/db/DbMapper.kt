@@ -14,7 +14,7 @@ class DbMapper {
         UserModel(user.createdAt, user.name, user.country, user.id)
     }
 
-    fun converUserDetailListToDomain(list: List<UserDetail>): List<UserDetailsModel> {
+    fun convertUserDetailListToDomain(list: List<UserDetail>): List<UserDetailsModel> {
         return list.map { userDetail ->
             convertUserDetailItemToDomain(userDetail)
         }

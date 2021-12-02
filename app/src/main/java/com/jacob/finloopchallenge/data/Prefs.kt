@@ -2,7 +2,7 @@ package com.jacob.finloopchallenge.data
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.jacob.finloopchallenge.AppConstants.SHARED_FAVLIST
+import com.jacob.finloopchallenge.AppConstants.SHARED_FAV_LIST
 import javax.inject.Inject
 
 class Prefs @Inject constructor(var storage: SharedPreferences) {
@@ -12,16 +12,16 @@ class Prefs @Inject constructor(var storage: SharedPreferences) {
         if (favoriteList == null)
             favoriteList = ArrayList()
         favoriteList!!.add(id.toString())
-        storage.edit().putString(SHARED_FAVLIST, gson.toJson(favoriteList)).apply()
+        storage.edit().putString(SHARED_FAV_LIST, gson.toJson(favoriteList)).apply()
     }
 
     fun deleteIDfromFavoriteList(id: Int) {
         favoriteList!!.remove(id.toString())
-        storage.edit().putString(SHARED_FAVLIST, gson.toJson(favoriteList)).apply()
+        storage.edit().putString(SHARED_FAV_LIST, gson.toJson(favoriteList)).apply()
     }
 
     fun getFavorites(): ArrayList<String>? {
-        val string = storage.getString(SHARED_FAVLIST, null) ?: return null
+        val string = storage.getString(SHARED_FAV_LIST, null) ?: return null
         favoriteList = gson.fromJson(string, ArrayList<String>()::class.java)
         return favoriteList
     }

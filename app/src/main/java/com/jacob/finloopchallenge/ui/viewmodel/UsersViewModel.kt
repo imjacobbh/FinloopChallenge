@@ -21,7 +21,7 @@ class UsersViewModel @Inject constructor(
     init{
         onCreate()
     }
-    fun onCreate() {
+    private fun onCreate() {
 
         viewModelScope.launch {
             isLoading.postValue(true)

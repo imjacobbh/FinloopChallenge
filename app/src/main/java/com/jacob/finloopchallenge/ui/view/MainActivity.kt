@@ -13,7 +13,7 @@ import com.jacob.finloopchallenge.AppConstants.USER_ID_SELECTED
 import com.jacob.finloopchallenge.ui.adapters.UserAdapter
 import com.jacob.finloopchallenge.databinding.ActivityMainBinding
 import com.jacob.finloopchallenge.domain.model.UserModel
-import com.jacob.finloopchallenge.showToast
+import com.jacob.finloopchallenge.core.showToast
 import com.jacob.finloopchallenge.ui.viewmodel.FavoritesViewModel
 import com.jacob.finloopchallenge.ui.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint

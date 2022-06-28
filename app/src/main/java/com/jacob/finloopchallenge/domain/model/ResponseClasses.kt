@@ -9,3 +9,10 @@ data class UserDetailsModel(
     val birthday: String,
     val salary: Float,
     val userId: Int)
+
+data class FirebaseNotificationsBody(
+    val title: String,
+    val body: String,
+    val username: String,
+    val userId: String
+)

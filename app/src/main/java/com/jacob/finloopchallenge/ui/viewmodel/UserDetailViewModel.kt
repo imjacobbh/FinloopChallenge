@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
     private val getUserDetailUseCase: GetUserDetailUseCase
-):ViewModel() {
+) : ViewModel() {
     val userDetailModel = MutableLiveData<List<UserDetailsModel>>()
     var isLoading = MutableLiveData<Boolean>()
 
@@ -20,13 +20,13 @@ class UserDetailViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getUserDetailUseCase(id)
-            if (!result.isNullOrEmpty()) {
-                userDetailModel.postValue(result)
+            result?.let {
+                userDetailModel.postValue(it)
                 isLoading.postValue(false)
-            } else {
-                userDetailModel.postValue(emptyList())
-                isLoading.postValue(false)
+                return@launch
             }
+            userDetailModel.postValue(emptyList())
+            isLoading.postValue(false)
         }
     }
 

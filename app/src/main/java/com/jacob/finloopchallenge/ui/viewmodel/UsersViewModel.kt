@@ -18,21 +18,23 @@ class UsersViewModel @Inject constructor(
     val userListModel = MutableLiveData<List<UserModel>>()
     var isLoading = MutableLiveData<Boolean>()
 
-    init{
+    init {
         onCreate()
     }
-    private fun onCreate() {
+
+    fun onCreate() {
 
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getUserListUseCase()
-            if (!result.isNullOrEmpty()) {
-                userListModel.postValue(result)
+            result?.let {
+                userListModel.postValue(it)
                 isLoading.postValue(false)
-            } else {
-                userListModel.postValue(emptyList())
-                isLoading.postValue(false)
+                return@launch
             }
+            userListModel.postValue(emptyList())
+            isLoading.postValue(false)
+
         }
     }
 
@@ -40,13 +42,13 @@ class UsersViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getUserListUpdate()
-            if (!result.isNullOrEmpty()) {
-                userListModel.postValue(result)
+            result?.let {
+                userListModel.postValue(it)
                 isLoading.postValue(false)
-            } else {
-                userListModel.postValue(emptyList())
-                isLoading.postValue(false)
+                return@launch
             }
+            userListModel.postValue(emptyList())
+            isLoading.postValue(false)
         }
     }
 

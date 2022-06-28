@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "430602845847",
+    "project_id": "finloop-challenge",
+    "storage_bucket": "finloop-challenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430602845847:android:6038b59e43c5bc5795b3d2",
+        "android_client_info": {
+          "package_name": "com.jacob.finloopchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430602845847-ra3tenl3m76m1nerr9s7otidts7ain39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzd-XvaGH8Lyj4yI50rP95BY9dyEBa4nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430602845847-ra3tenl3m76m1nerr9s7otidts7ain39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

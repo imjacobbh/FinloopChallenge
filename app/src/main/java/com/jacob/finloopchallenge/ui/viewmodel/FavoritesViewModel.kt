@@ -30,7 +30,7 @@ class FavoritesViewModel @Inject constructor(var favorites: FavoritesUseCase) : 
             if (result.isNullOrEmpty()) {
                 favorites.saveIDtoFavoritesList(id)
             } else if (result.contains(id.toString())) {
-                favorites.deleteIDfromFavoriteList(id)
+                favorites.deleteIdFromFavoriteList(id)
             } else {
                 favorites.saveIDtoFavoritesList(id)
             }

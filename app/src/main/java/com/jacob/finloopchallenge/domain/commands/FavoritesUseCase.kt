@@ -9,7 +9,7 @@ class FavoritesUseCase @Inject constructor(
      fun saveIDtoFavoritesList(id: Int) {
         prefs.saveIDtoFavoritesList(id)
     }
-     fun deleteIDfromFavoriteList(id: Int){
+     fun deleteIdFromFavoriteList(id: Int){
         prefs.deleteIDfromFavoriteList(id)
     }
      fun getFavorites():ArrayList<String>? =prefs.getFavorites()

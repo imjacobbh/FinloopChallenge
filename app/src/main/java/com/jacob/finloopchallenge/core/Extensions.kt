@@ -1,4 +1,4 @@
-package com.jacob.finloopchallenge
+package com.jacob.finloopchallenge.core
 
 import android.content.Context
 import android.widget.Toast
